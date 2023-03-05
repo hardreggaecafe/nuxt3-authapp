@@ -3,6 +3,6 @@ export default defineNuxtConfig({
   modules: ['@sidebase/nuxt-auth'],
   auth: {
   enableGlobalAppMiddleware: true,
-  origin: 'http://localhost:3000'
+  origin: 'https://nuxt3-authapp.vercel.app/'
   }
 })
