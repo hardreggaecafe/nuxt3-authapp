@@ -2,8 +2,8 @@
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
-  modules: ['@sidebase/nuxt-auth'],
-  auth: {
+//  modules: ['@sidebase/nuxt-auth'],
+//  auth: {
 //    isEnabled: true,
 //    origin: 'http://localhost:3000',
 //    basePath: '/api/auth',
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 //    globalMiddlewareOptions: {
 //        allow404WithoutAuth: true
 //    }
-  },
+//  },
   build: {
     transpile: ['vuetify'],
   },
