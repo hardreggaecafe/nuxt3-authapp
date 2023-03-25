@@ -16,7 +16,22 @@
               "run-script",
               "dev"
             ],
-            "port": 5858
+            "port": 5858,
+            "sourceMapPathOverrides": {
+              "webpack:///*.vue": "${workspaceFolder}/*.vue"
+            }
+        },
+        { 
+          "type": "node",
+          "request": "launch",
+          "name": "プログラムの起動",
+          "program": "${file}"
         }
-    ]
+    ],
+    "compounds": [
+      {
+        "name": "fullstack: nuxt",
+        "configurations": ["Nuxtjs: Launch Chrome"]
+      }
+    ]  
 }

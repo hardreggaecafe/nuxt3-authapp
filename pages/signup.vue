@@ -2,31 +2,36 @@
   <v-card max-width="480px">
     <v-form>
       <v-card-title>
-        ログイン
+        ユーザ登録
       </v-card-title>
       <v-card-text>
         <v-text-field v-model="email" label="メールアドレス" />
         <v-text-field v-model="password" type="password" label="パスワード" />
-        <v-btn color="primary" @click="signIn">
-          ログイン
+        <v-btn color="primary" @click="signUp">
+          登録
         </v-btn>
       </v-card-text>
     </v-form>
   </v-card>
 </template>
 
-<script lang="ts">
+<script lang="ts" >
 export default {
-  data() {
-    return {
+  data(){
+    return{
       email: "",
       password: ""
-    };
+    }
   },
-
   methods: {
-    signIn() {
+    signUp: function () {
+      const { signUp, token } = useAuth()
+      const status = signUp(this.email, this.password)
     },
   }
-  }
+}
+
+definePageMeta({
+  middleware: ['auth']
+})
 </script>
