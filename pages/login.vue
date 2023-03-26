@@ -13,7 +13,6 @@
       </v-card-text>
     </v-form>
   </v-card>
-  <Menu />
 </template>
 
 <script lang="ts">
@@ -34,7 +33,7 @@ export default {
         console.log ("token:" + token.value)
         if (token.value) {
           navigateTo('/done')
-        }else{ß
+        }else{
           navigateTo('/login')
         }
       })

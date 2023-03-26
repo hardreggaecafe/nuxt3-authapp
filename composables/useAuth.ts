@@ -10,6 +10,8 @@ import {
 } from 'firebase/auth'
 export const useAuth = () => {
   const token = useState<string>('token', () => "")
+  var user_data
+
   // メールアドレス新規登録関数
   async function signUp(email:string, password:string){
     return await new Promise((resolve)=>{
@@ -80,6 +82,8 @@ export const useAuth = () => {
         auth,
         (user) => {
           if (user) {
+            user_data = user
+            console.log ("user:"+user.email)
             user
               .getIdToken()
               .then((idtoken) => {
@@ -141,6 +145,7 @@ export const useAuth = () => {
     signIn,
     signOut,
     token,
+    user_data,
     checkAuthState,
     loginWithGoogle,
     loginWithTwitter

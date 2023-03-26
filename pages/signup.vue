@@ -12,7 +12,6 @@
         </v-btn>
       </v-card-text>
     </v-form>
-    <Menu />
   </v-card>
 </template>
 
@@ -29,7 +28,7 @@ export default {
       //const { signUp, token } = useAuth()
       console.log ("signUp")
       const { signUp } = useAuth()
-      const status = signUp(this.email, this.password)
+      signUp(this.email, this.password)
     },
   }
 }
