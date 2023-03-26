@@ -13,6 +13,7 @@
       </v-card-text>
     </v-form>
   </v-card>
+  <Menu />
 </template>
 
 <script lang="ts">
@@ -23,9 +24,20 @@ export default {
       password: ""
     };
   },
-
   methods: {
     signIn() {
+      console.log ("signIn")
+      const { signIn, token } = useAuth()
+      const result = signIn(this.email, this.password)
+      result.then (function(data){
+        console.log ("result:" + data)
+        console.log ("token:" + token.value)
+        if (token.value) {
+          navigateTo('/done')
+        }else{ß
+          navigateTo('/login')
+        }
+      })
     },
   }
   }

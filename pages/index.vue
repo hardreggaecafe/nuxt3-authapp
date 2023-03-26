@@ -5,4 +5,11 @@
   <div>
     <VBtn>Vuetify のボタン</VBtn>
   </div>
+  <Menu />
 </template>
+
+<script>
+definePageMeta({
+  middleware: ['auth']
+})
+</script>

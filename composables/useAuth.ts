@@ -14,11 +14,14 @@ export const useAuth = () => {
   async function signUp(email:string, password:string){
     return await new Promise((resolve)=>{
       // getAuth()でAuthを取得
+      console.log ("new Promise")
       const auth = getAuth()
       // メールアドレスとパスワードでアカウントを作成する
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential)
+        console.log ("success")
+        console.log ("status:" + userCredential.user.email)
+        navigateTo('/done')
         // サインアップできたらログインする
         resolve("success")
       })
@@ -36,15 +39,20 @@ export const useAuth = () => {
       // メールアドレスとパスワードでログインする
       return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+          console.log ("login success")
           userCredential.user
             .getIdToken()
               .then((idToken) => {
                 token.value = idToken
+                console.log ("token:" + token.value)
+                navigateTo('/done')
                 resolve()
               })
-            .catch(reject)
+            .catch
         })
-        .catch(reject)
+        .catch((reject) => {
+          console.log ("login falied")
+        })
     })
   }
   // ログアウトする関数

@@ -12,6 +12,7 @@
         </v-btn>
       </v-card-text>
     </v-form>
+    <Menu />
   </v-card>
 </template>
 
@@ -25,13 +26,11 @@ export default {
   },
   methods: {
     signUp: function () {
-      const { signUp, token } = useAuth()
+      //const { signUp, token } = useAuth()
+      console.log ("signUp")
+      const { signUp } = useAuth()
       const status = signUp(this.email, this.password)
     },
   }
 }
-
-definePageMeta({
-  middleware: ['auth']
-})
 </script>
