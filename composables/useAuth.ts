@@ -6,7 +6,8 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  TwitterAuthProvider
+  TwitterAuthProvider,
+  sendEmailVerification
 } from 'firebase/auth'
 export const useAuth = () => {
   const token = useState<string>('token', () => "")
@@ -18,6 +19,12 @@ export const useAuth = () => {
       // getAuth()でAuthを取得
       console.log ("new Promise")
       const auth = getAuth()
+      sendEmailVerification(auth.currentUser)
+      .then(() => {
+        // Email verification sent!
+        console.log ("email sent!")
+        // ...
+      });
       // メールアドレスとパスワードでアカウントを作成する
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -65,6 +72,7 @@ export const useAuth = () => {
       firebaseSignOut(auth)
         .then(() => {
           token.value = ""
+          console.log ("logout")
           resolve()
         })
         .catch((error) => {
@@ -83,7 +91,7 @@ export const useAuth = () => {
         (user) => {
           if (user) {
             user_data = user
-            console.log ("user:"+user.email)
+            console.log ("user:"+user.email+"/"+user.uid)
             user
               .getIdToken()
               .then((idtoken) => {
