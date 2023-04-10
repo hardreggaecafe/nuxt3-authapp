@@ -7,9 +7,11 @@
 
 <script setup>
 
-const { checkAuthState, user_data } = useAuth()
+const { checkAuthState, token, user_data } = useAuth()
 await checkAuthState()
-console.log ("user_uid:"+user_data)
+console.log ("token:"+token.value)
+console.log ("user_data:"+user_data.email)
+
 //const email = user_data.value.email
 
 definePageMeta({
