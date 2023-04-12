@@ -19,16 +19,16 @@ export const useAuth = () => {
       // getAuth()でAuthを取得
       console.log ("new Promise")
       const auth = getAuth()
-      sendEmailVerification(auth.currentUser)
-      .then(() => {
-        // Email verification sent!
-        console.log ("email sent!")
-        // ...
-      });
       // メールアドレスとパスワードでアカウントを作成する
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log ("success")
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+          // Email verification sent!
+          console.log ("email sent!")
+          // ...
+        });
         console.log ("status:" + userCredential.user.email)
         navigateTo('/done')
         // サインアップできたらログインする
